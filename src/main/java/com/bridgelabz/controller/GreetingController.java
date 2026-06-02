@@ -1,51 +1,18 @@
 package com.bridgelabz.controller;
 
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.bridgelabz.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/greeting")
 public class GreetingController {
 
-    @GetMapping
-    public Map<String,String> getGreeting() {
+    @Autowired
+    private GreetingService greetingService;
 
-        Map<String,String> response = new HashMap<>();
-        response.put("message","Hello World");
-        response.put("method","GET");
-
-        return response;
-    }
-
-    @PostMapping
-    public Map<String,String> postGreeting() {
-
-        Map<String,String> response = new HashMap<>();
-        response.put("message","Hello World");
-        response.put("method","POST");
-
-        return response;
-    }
-
-    @PutMapping
-    public Map<String,String> putGreeting() {
-
-        Map<String,String> response = new HashMap<>();
-        response.put("message","Hello World");
-        response.put("method","PUT");
-
-        return response;
-    }
-
-    @DeleteMapping
-    public Map<String,String> deleteGreeting() {
-
-        Map<String,String> response = new HashMap<>();
-        response.put("message","Hello World");
-        response.put("method","DELETE");
-
-        return response;
+    @GetMapping("/greeting")
+    public String greeting() {
+        return greetingService.getGreetingMessage();
     }
 }
