@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class GreetingRepository {
@@ -18,5 +19,12 @@ public class GreetingRepository {
 
     public List<Greeting> findAll() {
         return greetings;
+    }
+
+    public Optional<Greeting> findById(Long id) {
+
+        return greetings.stream()
+                .filter(g -> g.getId() == id)
+                .findFirst();
     }
 }

@@ -26,6 +26,17 @@ public class GreetingService {
         return greetingRepository.findAll();
     }
 
+    public Greeting editGreeting(Long id,String message) {
+
+        Greeting greeting = greetingRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Greeting Not Found"));
+
+        greeting.setMessage(message);
+
+        return greeting;
+    }
+
     public String getGreetingMessage(String firstName, String lastName) {
 
         if(firstName != null && lastName != null)

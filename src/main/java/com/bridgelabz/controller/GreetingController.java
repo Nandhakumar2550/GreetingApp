@@ -29,4 +29,12 @@ public class GreetingController {
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
+
+    @PutMapping("/edit/{id}")
+    public Greeting editGreeting(
+            @PathVariable Long id,
+            @RequestParam String message) {
+
+        return greetingService.editGreeting(id,message);
+    }
 }
