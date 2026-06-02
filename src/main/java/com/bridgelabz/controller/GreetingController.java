@@ -1,5 +1,6 @@
 package com.bridgelabz.controller;
 
+import com.bridgelabz.model.Greeting;
 import com.bridgelabz.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,14 @@ public class GreetingController {
     @Autowired
     private GreetingService greetingService;
 
-    @GetMapping
-    public String greeting(
+    @PostMapping
+    public Greeting saveGreeting(
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName) {
 
-        return greetingService.getGreetingMessage(firstName,lastName);
+        String message =
+                greetingService.getGreetingMessage(firstName,lastName);
+
+        return greetingService.saveGreeting(message);
     }
 }
