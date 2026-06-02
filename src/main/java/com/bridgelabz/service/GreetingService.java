@@ -16,9 +16,7 @@ public class GreetingService {
     private long id = 1;
 
     public Greeting saveGreeting(String message) {
-
         Greeting greeting = new Greeting(id++, message);
-
         return greetingRepository.save(greeting);
     }
 
@@ -26,15 +24,24 @@ public class GreetingService {
         return greetingRepository.findAll();
     }
 
-    public Greeting editGreeting(Long id,String message) {
-
+    public Greeting editGreeting(Long id, String message) {
         Greeting greeting = greetingRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Greeting Not Found"));
 
         greeting.setMessage(message);
-
         return greeting;
+    }
+
+    public String deleteGreeting(Long id) {
+
+        Greeting greeting = greetingRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Greeting Not Found"));
+
+        greetingRepository.delete(greeting);
+
+        return "Greeting Deleted Successfully";
     }
 
     public String getGreetingMessage(String firstName, String lastName) {

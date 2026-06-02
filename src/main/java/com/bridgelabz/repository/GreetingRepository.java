@@ -22,9 +22,12 @@ public class GreetingRepository {
     }
 
     public Optional<Greeting> findById(Long id) {
-
         return greetings.stream()
                 .filter(g -> g.getId() == id)
                 .findFirst();
+    }
+
+    public void delete(Greeting greeting) {
+        greetings.remove(greeting);
     }
 }
